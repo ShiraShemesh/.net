@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>student CRUD</title>
+    <link rel="stylesheet" href="./css/site.css" />
+</head>
+
+<body>
+    <h1>student CRUD</h1>
+    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+        <input type="text" id="add-Name" placeholder="Name" />
+        <input type="number" id="add-Grade" placeholder="Grade" min="1" max="12" />
+        <input type="number" id="add-Age" placeholder="Age" min="5" max="100" />
+        <input type="submit" value="Add" />
+    </form>
+
+    <div id="editForm" style="display:none;">
+        <h3>Edit Student</h3>
+        <form action="javascript:void(0);" onsubmit="updateItem()">
+            <input type="hidden" id="edit-Id" />
+            <input type="text" id="edit-Name" placeholder="Name" required />
+            <input type="number" id="edit-Grade" placeholder="Grade" required min="1" max="14" />
+            <input type="number" id="edit-Age" placeholder="Age" required min="6" max="21" />
+            <input type="submit" value="Save" />
+            <a onclick="closeInput()" aria-label="Close" style="cursor:pointer;">&#10006;</a>
+        </form>
+    </div>
+
+    <p id="counter"></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Age</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="list"></tbody>
+    </table>
+
+    <script src="./js/site.js" asp-append-version="true"></script>
+    <script>
+        getItems();
+    </script>
+</body>
+
+</html>
