@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JEWLERY</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+    <div class="container">
+        <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+            <input type="text" id="add-Name" placeholder="Name" />
+            <select id="add-Category">
+                <option value="necklace">necklace</option>
+                <option value="bracelet">bracelet</option>
+                <option value="ring">ring</option>
+                <option value="earrings">earrings</option>
+                <option value="watch">watch</option>
+            </select>
+            <input type="number" id="add-Price" placeholder="Price" />
+            <button type="submit">Add</button>
+        </form>
+        
+        <div id="editForm" style="display:none;">
+            <h3>עריכת פריט</h3>
+            <form action="javascript:void(0);" onsubmit="updateItem()">
+                <input type="hidden" id="edit-id" />
+                <input type="text" id="edit-name" placeholder="Name" required />
+                <select id="edit-category">
+                    <option value="necklace">necklace</option>
+                    <option value="bracelet">bracelet</option>
+                    <option value="ring">ring</option>
+                    <option value="earrings">earrings</option>
+                    <option value="watch">watch</option>
+                </select>
+                <input type="number" id="edit-price" placeholder="Price" />
+                <button type="submit">edit</button>
+                <a onclick="closeInput()" aria-label="Close" style="cursor:pointer;">&#10006;</a>
+            </form>
+        </div>
+        <p id="counter"></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="list"></tbody>
+        </table>
+
+    </div> <script src="js/Jewlery.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script>
+</body>
+
+</html>

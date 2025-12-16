@@ -1,0 +1,109 @@
+Z:\יד תשפו\שמש שירה\.net\obj\Debug\net8.0\.net.csproj.AssemblyReference.cache
+Z:\יד תשפו\שמש שירה\.net\obj\Debug\net8.0\.net.GeneratedMSBuildEditorConfig.editorconfig
+Z:\יד תשפו\שמש שירה\.net\obj\Debug\net8.0\.net.AssemblyInfoInputs.cache
+Z:\יד תשפו\שמש שירה\.net\obj\Debug\net8.0\.net.AssemblyInfo.cs
+Z:\יד תשפו\שמש שירה\.net\obj\Debug\net8.0\.net.csproj.CoreCompileInputs.cache
+Z:\יד תשפו\שמש שירה\.net\obj\Debug\net8.0\.net.MvcApplicationPartsAssemblyInfo.cs
+Z:\יד תשפו\שמש שירה\.net\obj\Debug\net8.0\.net.MvcApplicationPartsAssemblyInfo.cache
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\appsettings.Development.json
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\appsettings.json
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\.net.exe
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\.net.deps.json
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\.net.runtimeconfig.json
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\.net.dll
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\.net.pdb
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\Microsoft.OpenApi.dll
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+Z:\יד תשפו\שמש שירה\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.csproj.AssemblyReference.cache
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.GeneratedMSBuildEditorConfig.editorconfig
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.AssemblyInfoInputs.cache
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.AssemblyInfo.cs
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.csproj.CoreCompileInputs.cache
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.MvcApplicationPartsAssemblyInfo.cs
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.MvcApplicationPartsAssemblyInfo.cache
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\staticwebassets.build.json
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\staticwebassets.development.json
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\staticwebassets\msbuild..net.Microsoft.AspNetCore.StaticWebAssets.props
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\staticwebassets\msbuild.build..net.props
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting..net.props
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive..net.props
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\staticwebassets.pack.json
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\scopedcss\bundle\.net.styles.css
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.csproj.CopyComplete
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.dll
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\refint\.net.dll
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.pdb
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\.net.genruntimeconfig.cache
+Z:\יד תשפו\שמש שירה\webApi\obj\Debug\net8.0\ref\.net.dll
+E:\שירה\webApi\bin\Debug\net8.0\appsettings.Development.json
+E:\שירה\webApi\bin\Debug\net8.0\appsettings.json
+E:\שירה\webApi\bin\Debug\net8.0\.net.staticwebassets.runtime.json
+E:\שירה\webApi\bin\Debug\net8.0\.net.staticwebassets.endpoints.json
+E:\שירה\webApi\bin\Debug\net8.0\.net.exe
+E:\שירה\webApi\bin\Debug\net8.0\.net.deps.json
+E:\שירה\webApi\bin\Debug\net8.0\.net.runtimeconfig.json
+E:\שירה\webApi\bin\Debug\net8.0\.net.dll
+E:\שירה\webApi\bin\Debug\net8.0\.net.pdb
+E:\שירה\webApi\bin\Debug\net8.0\Microsoft.OpenApi.dll
+E:\שירה\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\שירה\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\שירה\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\שירה\webApi\obj\Debug\net8.0\.net.csproj.AssemblyReference.cache
+E:\שירה\webApi\obj\Debug\net8.0\rpswa.dswa.cache.json
+E:\שירה\webApi\obj\Debug\net8.0\.net.GeneratedMSBuildEditorConfig.editorconfig
+E:\שירה\webApi\obj\Debug\net8.0\.net.AssemblyInfoInputs.cache
+E:\שירה\webApi\obj\Debug\net8.0\.net.AssemblyInfo.cs
+E:\שירה\webApi\obj\Debug\net8.0\.net.csproj.CoreCompileInputs.cache
+E:\שירה\webApi\obj\Debug\net8.0\.net.MvcApplicationPartsAssemblyInfo.cs
+E:\שירה\webApi\obj\Debug\net8.0\.net.MvcApplicationPartsAssemblyInfo.cache
+E:\שירה\webApi\obj\Debug\net8.0\rjimswa.dswa.cache.json
+E:\שירה\webApi\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+E:\שירה\webApi\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+E:\שירה\webApi\obj\Debug\net8.0\scopedcss\bundle\.net.styles.css
+E:\שירה\webApi\obj\Debug\net8.0\staticwebassets.build.json
+E:\שירה\webApi\obj\Debug\net8.0\staticwebassets.build.json.cache
+E:\שירה\webApi\obj\Debug\net8.0\staticwebassets.development.json
+E:\שירה\webApi\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+E:\שירה\webApi\obj\Debug\net8.0\.net.csproj.Up2Date
+E:\שירה\webApi\obj\Debug\net8.0\.net.dll
+E:\שירה\webApi\obj\Debug\net8.0\refint\.net.dll
+E:\שירה\webApi\obj\Debug\net8.0\.net.pdb
+E:\שירה\webApi\obj\Debug\net8.0\.net.genruntimeconfig.cache
+E:\שירה\webApi\obj\Debug\net8.0\ref\.net.dll
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\appsettings.json
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\.net.staticwebassets.runtime.json
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\.net.staticwebassets.endpoints.json
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\.net.exe
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\.net.deps.json
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\.net.runtimeconfig.json
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\.net.dll
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\.net.pdb
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\user\Documents\webApi\webApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.csproj.AssemblyReference.cache
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.AssemblyInfoInputs.cache
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.AssemblyInfo.cs
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\scopedcss\bundle\.net.styles.css
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.csproj.Up2Date
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.dll
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\refint\.net.dll
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.pdb
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\.net.genruntimeconfig.cache
+C:\Users\user\Documents\webApi\webApi\obj\Debug\net8.0\ref\.net.dll
