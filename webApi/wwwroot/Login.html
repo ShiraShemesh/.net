@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login Form</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="login-card">
+            <header class="login-header">
+                <h1 class="login-title">כניסה</h1>
+                <p class="login-desc">הזן את פרטיך כדי להיכנס או ליצור משתמש חדש אוטומטית</p>
+            </header>
+
+            <form id="loginForm" class="login-form" autocomplete="on">
+                <div class="input-row">
+                    <label for="login-Name">שם</label>
+                    <input type="text" name="name" id="login-Name" placeholder="שם" required />
+                </div>
+
+                <div class="input-row input-inline">
+                    <div class="col">
+                        <label for="login-Age">גיל</label>
+                        <input type="number" name="age" id="login-Age" placeholder="גיל" required />
+                    </div>
+                    <div class="col">
+                        <label for="login-Password">סיסמה</label>
+                        <input type="password" name="password" id="login-Password" placeholder="סיסמה" required />
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <label class="remember"><input id="rememberMe" type="checkbox" /> זכור אותי</label>
+                    <button type="submit" class="btn-primary">כניסה</button>
+                </div>
+
+                <p id="formError" class="form-error" aria-live="polite"></p>
+            </form>
+
+            <p class="small-note">אין לך חשבון? מלא/י את הטופס — החשבון ייווצר אוטומטית.</p>
+        </div>
+    </div>
+
+    <div id="usersContainer"></div>
+
+    <script src="./js/Login.js"></script>
+</body>
+
+</html>

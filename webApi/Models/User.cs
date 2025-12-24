@@ -1,9 +1,8 @@
 namespace webApi.Models;
-
-public class Jewelry
+public class User
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public Color Color { get; set; }
-    public int Price { get; set; }
+    public int Age { get; set; }
+     public string Password { get; set; }
 }

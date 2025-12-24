@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>USER</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+    <div class="container">
+        <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+            <input type="text" id="add-Name" placeholder="Name" />
+            <input type="number" id="add-Age" placeholder="age" />
+            <input type="text" id="add-Password" placeholder="Password" />
+            <button type="submit">Add</button>
+        </form>
+        <div id="editForm" style="display:none;">
+            <h3>עריכת פרטי משתמש</h3>
+            <form action="javascript:void(0);" onsubmit="updateItem()">
+                <input type="hidden" id="edit-Id" />
+                <input type="text" id="edit-Name" placeholder="Name" required />
+                <input type="number" id="edit-Age" placeholder="age" />
+                  <input type="text" id="edit-Password" placeholder="Password" />
+                <button type="submit">edit</button>
+                <a onclick="closeInput()" aria-label="Close" style="cursor:pointer;">&#10006;</a>
+            </form>
+        </div>
+        <p id="counter"></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Password</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="list"></tbody>
+        </table>
+        <a href="./Jewlery.html">לתכשיטים</a>
+    </div>
+    <script src="./js/UserSite.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script>
+</body>
+</html>

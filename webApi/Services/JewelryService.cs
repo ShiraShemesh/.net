@@ -1,23 +1,32 @@
 using webApi.Models;
 using webApi.Interfaces;
+using System.Text.Json;
 
 namespace webApi.Services
 {
-    public class JewelryService : IJewelry
+    public class JewelryService : Iinterface<Jewelry>
     {
-        private List<Jewelry> list;
+        private List<Jewelry> list {get;}
 
-        public JewelryService()
+        private string filePath;
+        public JewelryService(IWebHostEnvironment webHost)
         {
-            list = new List<Jewelry>
+             this.filePath=Path.Combine(webHost.ContentRootPath,"Data","Jewelry.json");
+              using (var jsonFile = File.OpenText(filePath))
             {
-                new Jewelry { Id = 1, Name = "necklace", Category = Category.bracelet, Price = 100},
-                new Jewelry { Id = 2, Name = "earrings", Category = Category.necklace, Price = 500},
-                new Jewelry { Id = 3, Name = "bracelet", Category = Category.ring, Price = 420},
-                new Jewelry { Id = 4, Name = "ring", Category = Category.watch, Price = 400}
-            };
+                var content = jsonFile.ReadToEnd();
+                list = JsonSerializer.Deserialize<List<Jewelry>>(content,
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+            }
         }
-
+private void saveToFile()
+        {
+            var text = JsonSerializer.Serialize(list);
+            File.WriteAllText(filePath, text);
+        }
         public List<Jewelry> Get()
         {
             return list;
@@ -30,12 +39,11 @@ namespace webApi.Services
 
         public Jewelry Get(int id) => Find(id);
 
-        public Jewelry Create(Jewelry newJ)
-        {
-            var maxId = list.Max(j => j.Id);
+        public void Create(Jewelry newJ)
+        {   var maxId = list.Any() ? list.Max(j => j.Id) : 0;
             newJ.Id = maxId + 1;
             list.Add(newJ);
-            return newJ;
+             saveToFile();
         }
 
         public int Update(int id, Jewelry newJ)
@@ -47,6 +55,7 @@ namespace webApi.Services
                 return 1;
             var index = list.IndexOf(jewelry);
             list[index] = newJ;
+            saveToFile();
             return 2;
         }
 
@@ -56,6 +65,7 @@ namespace webApi.Services
             if (jewelry == null)
                 return false;
             list.Remove(jewelry);
+            saveToFile();
             return true;
         }
     }
@@ -64,7 +74,7 @@ namespace webApi.Services
     {
         public static void AddJewelryService(this IServiceCollection services)
         {
-            services.AddSingleton<IJewelry, JewelryService>();
+            services.AddSingleton<Iinterface<Jewelry>, JewelryService>();
         }
     }
 }

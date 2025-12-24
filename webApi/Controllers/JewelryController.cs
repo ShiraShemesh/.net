@@ -8,8 +8,8 @@ namespace webApi.Controllers
     [Route("[controller]")]
     public class JewelryController : ControllerBase
     {
-        IJewelry service;
-        public JewelryController(IJewelry service)
+        Iinterface<Jewelry> service;
+        public JewelryController(Iinterface<Jewelry> service)
         {
             this.service = service;
         }

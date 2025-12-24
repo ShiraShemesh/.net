@@ -1,95 +1,94 @@
 /* --- גלובלי ואסתטיקה כללית --- */
 :root {
-    --primary-color: #007bff; /* כחול מודרני להדגשה */
-    --accent-color: #28a745; /* ירוק לכפתורי הוספה */
-    --background-light: #f5f7fa; /* רקע בהיר מאוד */
-    --text-dark: #2c3e50; /* טקסט כהה */
+    --primary-color: #007bff; /* כחול מקורי לטבלה */
+    --modern-blue: #4361ee;   /* כחול מודרני לטופס */
+    --accent-color: #28a745;  /* ירוק לכפתורים */
+    --background-light: #f5f7fa;
+    --text-dark: #2c3e50;
     --border-light: #e0e6ed;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* פונט מערכת נקי */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 30px 20px;
     background-color: var(--background-light);
     color: var(--text-dark);
     line-height: 1.5;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* מרכוז כללי של כל העמוד */
 }
 
-/* --- קונטיינר ראשי למרכוז --- */
+/* --- קונטיינר ראשי --- */
 .container {
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
 }
 
 /* --- כותרות --- */
 h3 {
     color: var(--text-dark);
-    font-weight: 600; /* הדגשה ב-SemiBold */
+    font-weight: 600;
     font-size: 1.6em;
     margin-top: 40px;
     margin-bottom: 20px;
-    letter-spacing: 0.5px;
-    border-bottom: 3px solid var(--primary-color); /* קו הדגשה קצר ומודרני */
+    border-bottom: 3px solid var(--primary-color);
     display: inline-block;
     padding-bottom: 5px;
 }
 
-/* --- פריסת טפסים (Add ו-Edit) --- */
+/* --- עיצוב טופס ההתחברות (המודרני והממורכז) --- */
 form {
     background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* צל קל מאוד */
-    margin-bottom: 40px;
+    padding: 40px;
+    border-radius: 20px; /* עיגול מודרני */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 40px auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; 
     gap: 15px;
-    align-items: center;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    max-width: 400px; 
     border: 1px solid var(--border-light);
+    box-sizing: border-box;
 }
 
-/* --- שדות קלט ובחירה --- */
+/* שדות קלט בטופס - גודל אחיד כולל סיסמה וללא תוויות */
 input[type="text"],
 input[type="number"],
+input[type="password"],
 select {
-    padding: 10px 15px;
+    width: 100%;
+    padding: 14px 15px;
     border: 1px solid var(--border-light);
-    border-radius: 4px;
+    border-radius: 12px; /* שדות מעוגלים */
     font-size: 1em;
-    flex-grow: 1;
-    min-width: 150px;
-    background-color: #ffffff;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-input:focus, select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* טבעת פוקוס עדינה */
+    background-color: #fcfcfc;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
     outline: none;
 }
 
-/* --- כפתורים כלליים --- */
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    text-transform: capitalize;
+input:focus, select:focus {
+    border-color: var(--modern-blue);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
 }
 
-/* כפתור Add */
+/* כפתור שליחה בטופס */
 button[type="submit"] {
+    width: 100%;
+    padding: 14px;
     background-color: var(--accent-color);
     color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
 }
 
 button[type="submit"]:hover {
@@ -97,11 +96,11 @@ button[type="submit"]:hover {
     transform: translateY(-1px);
 }
 
-/* --- טבלת הפריטים --- */
+/* --- עיצוב הטבלאות (החזרתי למקור המדויק ששלחת) --- */
 table {
     width: 100%;
     margin: 30px 0;
-    border-collapse: collapse;
+    border-collapse: collapse; /* מבנה טבלה קלאסי */
     background-color: #ffffff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
@@ -125,87 +124,33 @@ thead th {
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f9fbfd; /* שורות מתחלפות עדינות */
+    background-color: #f9fbfd; /* שורות מתחלפות */
 }
 
 tbody tr:hover {
     background-color: #edf1f7;
 }
 
-/* --- כפתורי Edit ו-Delete בתוך הטבלה --- */
+/* כפתורי פעולה בתוך הטבלה */
 .edit-button, .delete-button {
     padding: 8px 12px;
     font-weight: 400;
     font-size: 0.9em;
     margin: 0 3px;
     border-radius: 4px;
-    transition: opacity 0.3s;
-}
-
-.edit-button {
-    background-color: #ffc107; /* צהוב/כתום אזהרה */
-    color: var(--text-dark);
-}
-
-.edit-button:hover {
-    background-color: #e0a800;
-}
-
-.delete-button {
-    background-color: #dc3545; /* אדום */
-    color: white;
-}
-
-.delete-button:hover {
-    background-color: #c82333;
-}
-
-/* --- צורת העריכה (Edit Form) --- */
-#editForm {
-    background-color: #ffffff;
-    border: 1px solid var(--primary-color);
-    padding: 25px;
-    border-radius: 8px;
-    margin: 30px auto;
-    width: fit-content;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
-}
-
-#editForm h3 {
-    color: var(--primary-color);
-    border-bottom: none;
-    margin-top: 0;
-}
-
-#editForm form {
-    background-color: transparent;
-    box-shadow: none;
-    padding: 0;
-    gap: 10px;
-    display: flex;
-    align-items: center;
-}
-
-#editForm a {
-    color: #dc3545;
-    font-size: 20px;
-    margin-left: 15px;
-    text-decoration: none;
     cursor: pointer;
-    vertical-align: middle;
-    transition: color 0.3s;
+    border: none;
+    width: auto; /* לא נמתח בתוך הטבלה */
 }
 
-#editForm a:hover {
-    color: #c82333;
-}
+.edit-button { background-color: #ffc107; color: var(--text-dark); }
+.delete-button { background-color: #dc3545; color: white; }
 
-/* --- מונה הפריטים --- */
+/* --- מונה הפריטים (מקורי וממורכז) --- */
 #counter {
     font-size: 1.1em;
     font-weight: 500;
     margin-top: 10px;
     color: var(--primary-color);
-    text-align: right;
-    padding-right: 5%;
+    text-align: center;
 }

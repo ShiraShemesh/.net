@@ -9,14 +9,13 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
     });
 
-// הוספת השירות JewelryService
-builder.Services.AddJewelryService(); // הוסף את השורה הזו
+builder.Services.AddJewelryService(); 
+builder.Services.AddUserService();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
      app.UseSwaggerUI(options =>
@@ -25,9 +24,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseDefaultFiles();
+app.UseDefaultFiles(new DefaultFilesOptions
+{
+    DefaultFileNames = new List<string> {"Login.html", "Jewlery.html", "User.html" }
+});
 app.UseStaticFiles();
-// app.UseHttpsRedirection(); // Commenting out to avoid HTTPS redirect issues
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
