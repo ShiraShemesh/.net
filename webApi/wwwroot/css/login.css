@@ -1,0 +1,109 @@
+/* --- פלטת צבעים מוארת יותר --- */
+:root {
+    --bg-light-navy: #273e63; /* רקע כחול כהה מאוזן */
+    --form-white: #ffffff;
+    --input-bg: #f8fafc;
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --text-main: #0f172a;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light-navy); /* רקע פחות כהה מהקודם */
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- קונטיינר הטופס הממורכז והקומפקטי --- */
+.login-card {
+    background: var(--form-white);
+    width: 380px; 
+    padding: 45px 35px;
+    border-radius: 28px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    text-align: center; /* מרכוז כל הטקסט בתוך הטופס */
+}
+
+h3 {
+    color: var(--text-main);
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+p.subtitle {
+    color: #64748b;
+    font-size: 0.95em;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+/* --- עיצוב אחיד לכל השדות (כולל גיל) --- */
+.form-group {
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    background-color: var(--input-bg);
+    font-size: 1em;
+    box-sizing: border-box;
+    text-align: center; /* מרכוז הטקסט בתוך השדה */
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input:focus {
+    border-color: #6366f1;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* --- עיצוב הצ'קבוקס (זכור אותי) --- */
+.remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* מרכוז השורה */
+    gap: 8px;
+    margin: 15px 0;
+    color: #475569;
+    font-size: 0.9em;
+}
+
+/* --- כפתור כניסה מרשים --- */
+button[type="submit"] {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 16px;
+    background: var(--accent-gradient);
+    color: white;
+    font-size: 1.15em;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+    transition: transform 0.2s, filter 0.2s;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* --- כיתוב תחתון --- */
+.footer-note {
+    margin-top: 25px;
+    color: #64748b;
+    font-size: 0.85em;
+}

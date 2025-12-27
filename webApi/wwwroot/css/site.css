@@ -1,156 +1,189 @@
-/* --- גלובלי ואסתטיקה כללית --- */
+/* --- פלטת צבעים והגדרות בסיס --- */
 :root {
-    --primary-color: #007bff; /* כחול מקורי לטבלה */
-    --modern-blue: #4361ee;   /* כחול מודרני לטופס */
-    --accent-color: #28a745;  /* ירוק לכפתורים */
-    --background-light: #f5f7fa;
-    --text-dark: #2c3e50;
-    --border-light: #e0e6ed;
+    --bg-light-navy: #273e63;
+    --form-white: #ffffff;
+    --input-bg: #f8fafc;
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --text-main: #0f172a;
+    --danger-red: #ef4444;
+    --edit-orange: #f59e0b; /* כתום-צהוב לעדכון */
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
-    padding: 30px 20px;
-    background-color: var(--background-light);
-    color: var(--text-dark);
-    line-height: 1.5;
+    padding: 40px 20px;
+    background-color: var(--bg-light-navy);
+    font-family: 'Segoe UI', system-ui, sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: center; /* מרכוז כללי של כל העמוד */
+    align-items: center;
+    min-height: 100vh;
 }
 
-/* --- קונטיינר ראשי --- */
 .container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-/* --- כותרות --- */
-h3 {
-    color: var(--text-dark);
-    font-weight: 600;
-    font-size: 1.6em;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    border-bottom: 3px solid var(--primary-color);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-/* --- עיצוב טופס ההתחברות (המודרני והממורכז) --- */
-form {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 20px; /* עיגול מודרני */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    margin: 0 auto 40px auto;
+    width: 95%;
+    max-width: 1100px;
     display: flex;
-    flex-direction: column; 
-    gap: 15px;
-    width: 100%;
-    max-width: 400px; 
-    border: 1px solid var(--border-light);
-    box-sizing: border-box;
+    flex-direction: column;
+    gap: 30px;
 }
 
-/* שדות קלט בטופס - גודל אחיד כולל סיסמה וללא תוויות */
+/* --- טופס הוספה עליון (כרטיס נפרד) --- */
+form:first-of-type {
+    background: var(--form-white);
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* --- שדות קלט ועיצוב ה-Select --- */
 input[type="text"],
 input[type="number"],
-input[type="password"],
 select {
-    width: 100%;
-    padding: 14px 15px;
-    border: 1px solid var(--border-light);
-    border-radius: 12px; /* שדות מעוגלים */
-    font-size: 1em;
-    background-color: #fcfcfc;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
+    flex: 1;
+    max-width: 250px;
+    padding: 14px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    background-color: var(--input-bg);
     outline: none;
+    transition: all 0.3s ease;
+    font-size: 1em;
 }
 
+/* עיצוב ייחודי ל-Select שייראה מודרני */
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    background-size: 18px;
+    padding-left: 40px;
+}
+
+/* אפקט בעת בחירה (Focus) של שדה או סלקט */
 input:focus, select:focus {
-    border-color: var(--modern-blue);
-    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+    border-color: #6366f1;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
-/* כפתור שליחה בטופס */
-button[type="submit"] {
+/* --- מונה פריטים מיושר לימין --- */
+#counter {
+    color: #ffffff; /* בולט על הרקע הכחול */
+    font-weight: 600;
+    margin: 10px 0;
+    text-align: right;
     width: 100%;
-    padding: 14px;
-    background-color: var(--accent-color);
-    color: white;
+    padding-right: 5px;
+}
+
+/* --- עיצוב הטבלה --- */
+table {
+    width: 100%;
+    background: var(--form-white);
+    padding: 20px;
+    border-radius: 28px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+/* כותרות הטבלה (כהה עם פס תחתון) */
+thead th {
+    color: var(--text-main);
+    font-weight: 800;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 3px solid #f1f5f9;
+}
+
+td {
+    background-color: #fcfdfe;
+    padding: 18px 20px;
+    text-align: center;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* עיגול פינות לשורות */
+tr td:first-child { border-radius: 16px 0 0 16px; }
+tr td:last-child { border-radius: 0 16px 16px 0; }
+
+/* --- כפתורי פעולה --- */
+
+/* כפתור הוספה ראשי */
+button[type="submit"]:first-of-type {
+    background: var(--accent-gradient);
     border: none;
     border-radius: 12px;
-    font-size: 1.1em;
+    color: white;
     font-weight: 700;
+    padding: 12px 25px;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s;
+    transition: transform 0.2s;
 }
 
 button[type="submit"]:hover {
-    background-color: #218838;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
-/* --- עיצוב הטבלאות (החזרתי למקור המדויק ששלחת) --- */
-table {
-    width: 100%;
-    margin: 30px 0;
-    border-collapse: collapse; /* מבנה טבלה קלאסי */
+/* כפתור מחיקה (לבן -> אדום) */
+.delete-button {
     background-color: #ffffff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-}
-
-th, td {
-    border: 1px solid var(--border-light);
-    padding: 15px 10px;
-    text-align: center;
-}
-
-thead th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85em;
-    letter-spacing: 0.5px;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9fbfd; /* שורות מתחלפות */
-}
-
-tbody tr:hover {
-    background-color: #edf1f7;
-}
-
-/* כפתורי פעולה בתוך הטבלה */
-.edit-button, .delete-button {
-    padding: 8px 12px;
-    font-weight: 400;
-    font-size: 0.9em;
-    margin: 0 3px;
-    border-radius: 4px;
+    color: var(--danger-red);
+    border: 2px solid var(--danger-red);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 700;
     cursor: pointer;
-    border: none;
-    width: auto; /* לא נמתח בתוך הטבלה */
+    min-width: 100px;
+    transition: all 0.3s ease;
 }
 
-.edit-button { background-color: #ffc107; color: var(--text-dark); }
-.delete-button { background-color: #dc3545; color: white; }
+.delete-button:hover {
+    background-color: var(--danger-red);
+    color: #ffffff;
+}
 
-/* --- מונה הפריטים (מקורי וממורכז) --- */
-#counter {
-    font-size: 1.1em;
-    font-weight: 500;
-    margin-top: 10px;
-    color: var(--primary-color);
-    text-align: center;
+/* כפתור עדכון (לבן -> כתום) */
+.edit-button {
+    background-color: #ffffff;
+    color: var(--edit-orange);
+    border: 2px solid var(--edit-orange);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    min-width: 100px;
+    transition: all 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color: var(--edit-orange);
+    color: #ffffff;
+}
+
+/* --- עיצוב הקישור בתחתית (ללא קו תחתון) --- */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #cbd5e1; /* צבע בהיר על הרקע הכחול */
+    text-decoration: none; /* ביטול קו תחתון */
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
 }
