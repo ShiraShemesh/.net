@@ -6,18 +6,44 @@ form.addEventListener('submit', function (event) {
     checkAndLogin();
 });
 
+// פונקציה חדשה לטיפול בתגובה מגוגל
+function handleCredentialResponse(response) {
+    const googleToken = response.credential;
+
+    fetch(uri + '/google-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Token: googleToken })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error('Google login failed on server');
+        return res.json();
+    })
+    .then(data => {
+        if (data.token) {
+            localStorage.setItem('token', data.token);
+            window.location.href = 'User.html';
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('התחברות עם גוגל נכשלה');
+    });
+}
+
 function checkAndLogin() {
     const name = document.getElementById('login-Name').value.trim();
-    const age = parseInt(document.getElementById('login-Age').value, 10);
+    const email = document.getElementById('login-Email').value.trim(); // שונה מ-Age
     const password = document.getElementById('login-Password').value.trim();
 
-    if (!name || isNaN(age) || !password) {
+    if (!name || !email || !password) { // בדיקה שהמייל קיים
         alert("Please fill all fields correctly.");
         return;
     }
-//האם להוריד????
-    const storedKey = 'token_' + name+"_"+password;
+
+    const storedKey = 'token_' + name + "_" + password;
     const storedToken = localStorage.getItem(storedKey);
+
     if (storedToken) {
         fetch(uri)
             .then(r => {
@@ -47,7 +73,7 @@ function checkAndLogin() {
     })
     .then(response => {
         if (response.ok) return response.json();
-        if (response.status === 401) return null; // not found
+        if (response.status === 401) return null; 
         throw new Error('Login failed');
     })
     .then(data => {
@@ -72,21 +98,21 @@ function checkAndLogin() {
         console.error('Unable to login/check users.', error);
         alert('Failed to check/login users: ' + error.message);
     });
-    }
+}
 
 function addItem() {
     const name = document.getElementById('login-Name').value.trim();
-    const age = parseInt(document.getElementById('login-Age').value, 10);
+    const email = document.getElementById('login-Email').value.trim(); // שונה מ-Age
     const password = document.getElementById('login-Password').value.trim();
 
-    if (!name || isNaN(age) || !password) {
+    if (!name || !email || !password) {
         alert("Please fill all fields correctly.");
         return Promise.reject(new Error('Invalid input'));
     }
 
     const item = {
         Name: name,
-        Age: age,
+        Email: email, // נשלח Email לשרת במקום Age
         Password: password
     };
 
@@ -95,21 +121,20 @@ function addItem() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(item)
     })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => { throw new Error(`Error ${response.status}: ${text}`); });
-            }
-            document.getElementById('login-Name').value = '';
-            document.getElementById('login-Age').value = '';
-            document.getElementById('login-Password').value = '';
-            getItems();
-          
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            alert('Failed to add user: ' + error.message);
-            throw error;
-        });
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(`Error ${response.status}: ${text}`); });
+        }
+        document.getElementById('login-Name').value = '';
+        document.getElementById('login-Email').value = ''; // ניקוי שדה אימייל
+        document.getElementById('login-Password').value = '';
+        getItems();
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        alert('Failed to add user: ' + error.message);
+        throw error;
+    });
 }
 
 function getItems() {
@@ -121,13 +146,11 @@ function getItems() {
             return response.json();
         })
         .then(data => {
-            displayUsers(data);
+            if (typeof displayUsers === "function") {
+                displayUsers(data);
+            }
         })
         .catch(error => {
             console.error('Unable to get items.', error);
         });
 }
-
-
-
-

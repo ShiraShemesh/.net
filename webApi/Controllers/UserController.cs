@@ -3,6 +3,7 @@ using webApi.Models;
 using webApi.Interfaces;
 using System.Security.Claims;
 using webApi.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace webApi.Controllers
 {
@@ -29,6 +30,7 @@ namespace webApi.Controllers
             return u;
         }
         [HttpPost]
+        
         public void Create(User u)
         {
             service.Create(u);
@@ -40,18 +42,19 @@ namespace webApi.Controllers
             var u = service.Get().FirstOrDefault(x => x.Name == login.Name && x.Password == login.Password);
             if (u == null)
                 return Unauthorized();
-                
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, u.Name),
                 new Claim("userid", u.Id.ToString()),
-                new Claim("usertype", "User")
+                new Claim("type", u.IsAdmin ? "Admin" : "User")
             };
 
             var token = TokenService.WriteToken(TokenService.GetToken(claims));
             return Ok(new { token });
         }
         [HttpPut("{id}")]
+        [Authorize(Policy = "Admin")]
         public ActionResult Update(int id, User u)
         {
             int i = service.Update(id, u);
@@ -62,6 +65,7 @@ namespace webApi.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
+        [Authorize(Policy = "Admin")]
         public ActionResult Delete(int id)
         {
             bool flag = service.Delete(id);

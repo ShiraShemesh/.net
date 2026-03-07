@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Documents\\webApi\\webApi\\webApi\\.net.csproj": {}
+    "C:\\Users\\user\\Downloads\\net-main\\.net-main\\webApi\\.net.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Documents\\webApi\\webApi\\webApi\\.net.csproj": {
+    "C:\\Users\\user\\Downloads\\net-main\\.net-main\\webApi\\.net.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Documents\\webApi\\webApi\\webApi\\.net.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Downloads\\net-main\\.net-main\\webApi\\.net.csproj",
         "projectName": ".net",
-        "projectPath": "C:\\Users\\user\\Documents\\webApi\\webApi\\webApi\\.net.csproj",
+        "projectPath": "C:\\Users\\user\\Downloads\\net-main\\.net-main\\webApi\\.net.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Documents\\webApi\\webApi\\webApi\\obj\\",
+        "outputPath": "C:\\Users\\user\\Downloads\\net-main\\.net-main\\webApi\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -51,17 +47,13 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.IdentityModel.Tokens": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.15.0, )"
+              "version": "[8.0.*, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
-            },
-            "System.IdentityModel.Tokens.Jwt": {
-              "target": "Package",
-              "version": "[8.15.0, )"
+              "version": "[10.1.0, )"
             }
           },
           "imports": [
