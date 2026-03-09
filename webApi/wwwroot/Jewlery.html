@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-            <input type="text" id="add-Name" placeholder="Name" />
+   <input type="text" id="add-Email" placeholder="Owner Email" style="display:none;">
             <select id="add-Color">
                 <option value="0">silver</option>
                 <option value="1">gold</option>
@@ -25,13 +25,12 @@
             <h3>עריכת פריט</h3>
             <form action="javascript:void(0);" onsubmit="updateItem()">
                 <input type="hidden" id="edit-id" />
-                <input type="text" id="edit-name" placeholder="Name" required />
-                <select id="edit-Color">
-                  <option value="0">silver</option>
-                <option value="1">gold</option>
-                <option value="2">copper</option>
-                <option value="3">black</option>
-                <option value="4">white</option>
+               <input type="text" id="edit-Email" placeholder="Owner Email" style="display:none;"> <select id="edit-Color">
+                    <option value="0">silver</option>
+                    <option value="1">gold</option>
+                    <option value="2">copper</option>
+                    <option value="3">black</option>
+                    <option value="4">white</option>
                 </select>
                 <input type="number" id="edit-price" placeholder="Price" />
                 <button type="submit">edit</button>
@@ -43,7 +42,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Email</th>
                     <th>Color</th>
                     <th>Price</th>
                     <th>Edit</th>
@@ -59,4 +58,5 @@
         getItems();
     </script>
 </body>
+
 </html>

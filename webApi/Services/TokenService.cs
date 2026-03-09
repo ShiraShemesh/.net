@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using webApi.Models;
 
 namespace webApi.Services
 {
@@ -28,10 +30,22 @@ namespace webApi.Services
                 ValidIssuer = issuer,
                 ValidAudience = issuer,
                 IssuerSigningKey = key,
-                ClockSkew = TimeSpan.Zero 
+                ClockSkew = TimeSpan.Zero
             };
+
 
         public static string WriteToken(SecurityToken token) =>
             new JwtSecurityTokenHandler().WriteToken(token);
+        public static string GenerateUserToken(User u)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, u.Name),
+                new Claim(ClaimTypes.Email, u.Email),
+                new Claim("userid", u.Id.ToString()),
+                new Claim("type", u.IsAdmin ? "Admin" : "User")
+            };
+            return TokenService.WriteToken(TokenService.GetToken(claims));
+        }
     }
 }

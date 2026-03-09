@@ -1,6 +1,7 @@
 using webApi.Models;
 using webApi.Interfaces;
 using System.Text.Json;
+using Google.Apis.Auth;
 
 namespace webApi.Services
 {
@@ -27,7 +28,7 @@ namespace webApi.Services
         {
             var text = JsonSerializer.Serialize(list);
             File.WriteAllText(filePath, text);
-        }  
+        }
         public List<User> Get()
         {
             return list;
@@ -45,7 +46,7 @@ namespace webApi.Services
             var maxId = list.Any() ? list.Max(j => j.Id) : 0;
             newU.Id = maxId + 1;
             list.Add(newU);
-             saveToFile();
+            saveToFile();
         }
 
         public int Update(int id, User newU)
@@ -57,7 +58,7 @@ namespace webApi.Services
                 return 1;
             var index = list.IndexOf(u);
             list[index] = newU;
-             saveToFile();
+            saveToFile();
             return 2;
         }
 
@@ -67,8 +68,13 @@ namespace webApi.Services
             if (u == null)
                 return false;
             list.Remove(u);
-             saveToFile();
+            saveToFile();
             return true;
+        }
+    
+        public User GetEmail(string Email)
+        {
+            return Get().FirstOrDefault(x => x.Email == Email);
         }
     }
     public static class UseryServiceExtension

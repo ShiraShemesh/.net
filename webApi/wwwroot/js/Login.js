@@ -1,96 +1,132 @@
 const form = document.getElementById('loginForm');
-const uri = '/User';  
+const userUri = '/UserController'; // בשביל check-email
+const authUri = '/api/Auth';       // בשביל login, google-login, set-password
+async function initGoogleSignIn() {
+    try {
+        // 1. פנייה לשרת לקבלת המפתח
+        const response = await fetch('/api/Auth/google-id');
+        const data = await response.json();
 
+        // 2. אתחול גוגל עם המפתח שחזר מהשרת
+        google.accounts.id.initialize({
+            client_id: data.clientId,
+            callback: handleCredentialResponse
+        });
+
+        // 3. רינדור הכפתור בתוך הדיב הריק שב-HTML
+        google.accounts.id.renderButton(
+            document.getElementById("googleButton"),
+            { theme: "outline", size: "large", text: "signin_with" }
+        );
+    } catch (error) {
+        console.error("שגיאה בטעינת Google Client ID:", error);
+    }
+}
+
+// הפעלת הטעינה כשהחלון מסיים להיטען
+window.onload = initGoogleSignIn;
 form.addEventListener('submit', function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
     checkAndLogin();
 });
-
-function checkAndLogin() {
-    const name = document.getElementById('login-Name').value.trim();
-    const age = parseInt(document.getElementById('login-Age').value, 10);
-    const password = document.getElementById('login-Password').value.trim();
-
-    if (!name || isNaN(age) || !password) {
-        alert("Please fill all fields correctly.");
-        return;
-    }
-//האם להוריד????
-    const storedKey = 'token_' + name+"_"+password;
-    const storedToken = localStorage.getItem(storedKey);
-    if (storedToken) {
-        fetch(uri)
-            .then(r => {
-                if (!r.ok) return r.text().then(t => { throw new Error(t); });
-                return r.json();
-            })
-            .then(users => {
-                const match = users.find(u => (u.Name ?? u.name) === name && (u.Password ?? u.password) === password);
-                if (match) {
-                    localStorage.setItem('token', storedToken);
-                    window.location.href = 'User.html';
-                } else {
-                    alert('Wrong credentials for existing user.');
-                }
-            })
-            .catch(err => {
-                console.error('Unable to validate stored token.', err);
-                alert('Failed to validate user: ' + err.message);
-            });
-        return;
-    }
-
-    fetch(uri + '/login', {
+function handleCredentialResponse(response) {
+    fetch(authUri + '/google-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ Name: name, Password: password })
+        body: JSON.stringify({ token: response.credential })
     })
-    .then(response => {
-        if (response.ok) return response.json();
-        if (response.status === 401) return null; // not found
-        throw new Error('Login failed');
-    })
-    .then(data => {
-        if (data && data.token) {
-            localStorage.setItem(storedKey, data.token);
-            localStorage.setItem('token', data.token);
-            window.location.href = 'User.html';
-        } else {
-            addItem().then(() => {
-                return fetch(uri + '/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ Name: name, Password: password })
-                });
-            })
-            .then(r => { if (!r.ok) throw new Error('Login after create failed'); return r.json(); })
-            .then(d => { localStorage.setItem(storedKey, d.token); localStorage.setItem('token', d.token); window.location.href = 'User.html'; })
-            .catch(err => { console.error(err); alert('Login/create failed: ' + err.message); });
-        }
-    })
-    .catch(error => {
-        console.error('Unable to login/check users.', error);
-        alert('Failed to check/login users: ' + error.message);
-    });
+        .then(res => res.json())
+        .then(data => {
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+                window.location.href = "User.html";
+            }
+        })
+        .catch(err => {
+            console.error("Login error:", err);
+            alert("חלה שגיאה בתהליך ההתחברות.");
+        });
+}
+document.getElementById('forgotPassword').addEventListener('click', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('login-Email').value.trim();
+
+    if (!email) {
+        alert("נא להזין קודם את כתובת המייל שלך");
+        return;
     }
+    fetch(userUri + '/check-email/' + email)
+        .then(res => res.json())
+        .then(data => {
+            if (data.exists) {
+                const newPass = prompt("בחר סיסמה חדשה לחשבון שלך:");
+                if (newPass) {
+                    updatePasswordOnServer(email, newPass);
+                }
+            } else {
+                alert("המייל לא נמצא במערכת, אנא הירשם קודם.");
+            }
+        });
+});
+
+function updatePasswordOnServer(email, password) {
+    fetch(authUri + '/set-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Email: email, Password: password })
+    })
+        .then(res => {
+            if (res.ok) alert("הסיסמה עודכנה! כעת תוכלי להיכנס רגיל.");
+            else alert("שגיאה בעדכון הסיסמה.");
+        });
+}
+function checkAndLogin() {
+    const name = document.getElementById('login-Name').value.trim();
+    const email = document.getElementById('login-Email').value.trim();
+    const password = document.getElementById('login-Password').value.trim();
+
+    if (!name || !email || !password) {
+        alert("נא למלא את כל השדות.");
+        return;
+    }
+
+    fetch(authUri + '/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Name: name, Password: password, Email: email })
+    })
+        .then(response => {
+            if (response.ok) return response.json();
+            if (response.status === 401) throw new Error('שם משתמש או סיסמה שגויים');
+            if (response.status === 404) throw new Error('משתמש לא קיים. אנא הירשם דרך גוגל או דף הרשמה');
+            throw new Error('שגיאת שרת');
+        })
+        .then(data => {
+            if (data && data.token) {
+                localStorage.setItem('token', data.token);
+                window.location.href = 'User.html';
+            }
+        })
+        .catch(error => alert(error.message));
+}
 
 function addItem() {
     const name = document.getElementById('login-Name').value.trim();
-    const age = parseInt(document.getElementById('login-Age').value, 10);
+    const email = document.getElementById('login-Email').value.trim(); 
     const password = document.getElementById('login-Password').value.trim();
 
-    if (!name || isNaN(age) || !password) {
+    if (!name || !email || !password) {
         alert("Please fill all fields correctly.");
         return Promise.reject(new Error('Invalid input'));
     }
 
     const item = {
         Name: name,
-        Age: age,
+        Email: email, 
         Password: password
     };
 
-    return fetch(uri, {
+    return fetch(authUri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(item)
@@ -100,10 +136,9 @@ function addItem() {
                 return response.text().then(text => { throw new Error(`Error ${response.status}: ${text}`); });
             }
             document.getElementById('login-Name').value = '';
-            document.getElementById('login-Age').value = '';
+            document.getElementById('login-Email').value = ''; 
             document.getElementById('login-Password').value = '';
             getItems();
-          
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -113,7 +148,7 @@ function addItem() {
 }
 
 function getItems() {
-    fetch(uri)
+    fetch(authUri)
         .then(response => {
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text); });
@@ -121,13 +156,11 @@ function getItems() {
             return response.json();
         })
         .then(data => {
-            displayUsers(data);
+            if (typeof displayUsers === "function") {
+                displayUsers(data);
+            }
         })
         .catch(error => {
             console.error('Unable to get items.', error);
         });
 }
-
-
-
-

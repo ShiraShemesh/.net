@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login Form</title>
     <link rel="stylesheet" href="css/login.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -18,24 +19,28 @@
 
             <form id="loginForm" class="login-form" autocomplete="on">
                 <div class="input-row">
-                    <label for="login-Name">שם</label>
-                    <input type="text" name="name" id="login-Name" placeholder="שם" required />
+                    <label for="login-Name">שם משתמש</label>
+                    <input type="text" name="name" id="login-Name" placeholder="שם משתמש" required />
                 </div>
 
                 <div class="input-row input-inline">
                     <div class="col">
-                        <label for="login-Age">גיל</label>
-                        <input type="number" name="age" id="login-Age" placeholder="גיל" required />
+                        <label for="login-Email">אימייל</label>
+                        <input type="email" name="email" id="login-Email" placeholder="email@example.com" required />
                     </div>
                     <div class="col">
                         <label for="login-Password">סיסמה</label>
                         <input type="password" name="password" id="login-Password" placeholder="סיסמה" required />
                     </div>
                 </div>
-
+                <a href="#" id="forgotPassword">שכחתי סיסמה / יצירת סיסמה לכניסה רגילה</a>
                 <div class="form-actions">
                     <label class="remember"><input id="rememberMe" type="checkbox" /> זכור אותי</label>
                     <button type="submit" class="btn-primary">כניסה</button>
+                </div>
+
+                <div style="margin-top: 15px; display: flex; justify-content: center;">
+                    <div id="googleButton"></div>
                 </div>
 
                 <p id="formError" class="form-error" aria-live="polite"></p>

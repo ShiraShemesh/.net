@@ -9,19 +9,26 @@
 
 <body>
     <div class="container">
-        <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-            <input type="text" id="add-Name" placeholder="Name" />
-            <input type="number" id="add-Age" placeholder="age" />
-            <input type="text" id="add-Password" placeholder="Password" />
-            <button type="submit">Add</button>
-        </form>
+        <div id="add-user-section" style="display:none;">
+            <h3>הוספת משתמש חדש</h3>
+            <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+                <input type="text" id="add-Name" placeholder="Name" />
+                <input type="email" id="add-Email" placeholder="Email" />
+                <input type="text" id="add-Password" placeholder="Password" />
+                <button type="submit">Add</button>
+            </form>
+        </div>
         <div id="editForm" style="display:none;">
             <h3>עריכת פרטי משתמש</h3>
             <form action="javascript:void(0);" onsubmit="updateItem()">
                 <input type="hidden" id="edit-Id" />
                 <input type="text" id="edit-Name" placeholder="Name" required />
-                <input type="number" id="edit-Age" placeholder="age" />
-                  <input type="text" id="edit-Password" placeholder="Password" />
+                <input type="email" id="edit-Email" placeholder="Email" />
+                <input type="text" id="edit-Password" placeholder="Password" />
+                <div id="admin-section" style="display:none;">
+                    <label>מנהל?</label>
+                    <input type="checkbox" id="edit-IsAdmin" />
+                </div>
                 <button type="submit">edit</button>
                 <a onclick="closeInput()" aria-label="Close" style="cursor:pointer;">&#10006;</a>
             </form>
@@ -32,8 +39,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Age</th>
+                    <th>Email</th>
                     <th>Password</th>
+                    <th>Role</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -47,4 +55,5 @@
         getItems();
     </script>
 </body>
+
 </html>
