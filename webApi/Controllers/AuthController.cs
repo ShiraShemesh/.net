@@ -21,7 +21,12 @@ namespace webApi.Controllers
         [HttpGet("google-id")]
         public IActionResult GetGoogleId()
         {
-            return Ok(new { clientId = _configuration["GoogleAuth:ClientId"] });
+            var clientId = _configuration["GoogleAuth:ClientId"];
+            if (string.IsNullOrEmpty(clientId))
+            {
+                return Ok(new { clientId = (string)null, available = false });
+            }
+            return Ok(new { clientId = clientId, available = true });
         }
         [HttpPost("login")]
         public ActionResult Login([FromBody] User login)
@@ -36,6 +41,11 @@ namespace webApi.Controllers
         [HttpPost("google-login")]
         public async Task<ActionResult> GoogleLogin([FromBody] GoogleLoginRequest request)
         {
+            var clientId = _configuration["GoogleAuth:ClientId"];
+            if (string.IsNullOrEmpty(clientId))
+            {
+                return BadRequest(new { error = "Google authentication is not configured. Please use email/password login." });
+            }
             try
             {
                 var (user, isNewUser) = await _authService.LoginWithGoogleAsync(request.Token);

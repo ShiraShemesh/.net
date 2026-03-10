@@ -1,29 +1,47 @@
 const form = document.getElementById('loginForm');
-const userUri = '/UserController'; // בשביל check-email
-const authUri = '/api/Auth';       // בשביל login, google-login, set-password
+const userUri = '/UserController'; 
+const authUri = '/api/Auth';    
 async function initGoogleSignIn() {
     try {
-        // 1. פנייה לשרת לקבלת המפתח
+       
         const response = await fetch('/api/Auth/google-id');
         const data = await response.json();
+        if (!data.available || !data.clientId) {
+            const googleButton = document.getElementById("googleButton");
+            if (googleButton) {
+                googleButton.innerHTML = `
+                    <button type="button" style="padding: 10px 20px; background-color: #ccc; color: #666; border: 1px solid #999; border-radius: 4px; cursor: not-allowed;" disabled>
+                        🔒 Google - דרוש הגדרה של secret!
+                    </button>
+                `;
+                googleButton.title = "דרוש הגדרה של Google Client ID ו-Secret כדי להשתמש בכניסה דרך Google";
+            }
+            console.warn("Google authentication is not configured");
+            return;
+        }
 
-        // 2. אתחול גוגל עם המפתח שחזר מהשרת
         google.accounts.id.initialize({
             client_id: data.clientId,
             callback: handleCredentialResponse
         });
 
-        // 3. רינדור הכפתור בתוך הדיב הריק שב-HTML
         google.accounts.id.renderButton(
             document.getElementById("googleButton"),
             { theme: "outline", size: "large", text: "signin_with" }
         );
     } catch (error) {
         console.error("שגיאה בטעינת Google Client ID:", error);
+        const googleButton = document.getElementById("googleButton");
+        if (googleButton) {
+            googleButton.innerHTML = `
+                <button type="button" style="padding: 10px 20px; background-color: #ccc; color: #666; border: 1px solid #999; border-radius: 4px; cursor: not-allowed;" disabled>
+                    ⚠️ שגיאה בטעינת Google
+                </button>
+            `;
+        }
     }
 }
 
-// הפעלת הטעינה כשהחלון מסיים להיטען
 window.onload = initGoogleSignIn;
 form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -40,6 +58,8 @@ function handleCredentialResponse(response) {
             if (data.token) {
                 localStorage.setItem("token", data.token);
                 window.location.href = "User.html";
+            } else if (data.error) {
+                alert("שגיאה: " + data.error);
             }
         })
         .catch(err => {

@@ -7,15 +7,23 @@ namespace webApi.Services
     {
         private readonly Iinterface<User> _userService;
         private string _GoogleClientId;
+        private string _GoogleClientSecret;
 
-        public AuthService(Iinterface<User> userService, IConfiguration configuration)
+        public AuthService(IUserService userService, IConfiguration configuration)
         {
             _GoogleClientId = configuration["GoogleAuth:ClientId"];
+            _GoogleClientSecret = configuration["GoogleAuth:ClientSecret"];
             _userService = userService;
         }
 
         public async Task<(User user, bool isNewUser)> LoginWithGoogleAsync(string token)
         {
+            // בדיקה אם Google מוגדר
+            if (string.IsNullOrEmpty(_GoogleClientId) || string.IsNullOrEmpty(_GoogleClientSecret))
+            {
+                throw new InvalidOperationException("Google authentication is not configured. Please use email/password login.");
+            }
+
             var settings = new GoogleJsonWebSignature.ValidationSettings()
             {
                 Audience = new List<string> { _GoogleClientId }
