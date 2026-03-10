@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.Google;
 using webApi.Services;
+using webApi.Interfaces;
 using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,6 +47,7 @@ builder.Services.AddAuthorization(cfg =>
 builder.Services.AddJewelryService();
 builder.Services.AddUserService();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IActiveUserService, ActiveUserService>();
 
 // 4. הגדרת Swagger (נשאר כפי שהיה אצלך)
 

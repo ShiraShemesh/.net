@@ -12,14 +12,16 @@ namespace webApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService service;
+        private readonly IActiveUserService _activeUserService;
 
-        public UserController(IUserService service)
+        public UserController(IUserService service, IActiveUserService activeUserService)
         {
             this.service = service;
+            _activeUserService = activeUserService;
         }
 
-        private string GetUserEmail() => User.FindFirst(ClaimTypes.Email)?.Value;
-        private bool IsAdmin() => User.FindFirst("type")?.Value == "Admin" || User.IsInRole("Admin");
+        private string GetUserEmail() => _activeUserService.Email;
+        private bool IsAdmin() => _activeUserService.IsAdmin;
 
         [HttpGet("check-email/{email}")]
         public ActionResult CheckEmail(string email)

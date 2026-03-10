@@ -13,20 +13,21 @@ namespace webApi.Controllers
     public class JewelryController : ControllerBase
     {
         Iinterface<Jewelry> service;
+        private readonly IActiveUserService _activeUserService;
 
-        public JewelryController(Iinterface<Jewelry> service)
+        public JewelryController(Iinterface<Jewelry> service, IActiveUserService activeUserService)
         {
             this.service = service;
+            _activeUserService = activeUserService;
         }
 
         private string GetUserEmail()
         {
-            return User.FindFirst("Email")?.Value ?? User.FindFirst(ClaimTypes.Email)?.Value;
+            return _activeUserService.Email;
         }
         private bool IsAdmin()
         {
-            var role = User.FindFirst("type")?.Value;
-            return role == "Admin";
+            return _activeUserService.IsAdmin;
         }
 
         [HttpGet]
