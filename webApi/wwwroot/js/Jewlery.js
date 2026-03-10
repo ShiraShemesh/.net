@@ -1,5 +1,62 @@
 const uri = '/Jewelry';
 let list = [];
+
+// פונקציית עזר להצגת הודעת טוסט
+function showToast(message, isError = false) {
+    Toastify({
+        text: message,
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        style: {
+            background: isError ? "#ff5f6d" : "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+    }).showToast();
+}
+
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/jewelryHub", {
+        accessTokenFactory: () => localStorage.getItem('token'),
+        transport: signalR.HttpTransportType.WebSocket | signalR.HttpTransportType.LongPolling
+    })
+    .withAutomaticReconnect([0, 0, 1000, 3000, 5000, 10000])
+    .configureLogging(signalR.LogLevel.Information)
+    .build();
+
+connection.on("ItemAdded", (item) => {
+    getItems();
+    console.log("Item added:", item);
+});
+
+connection.on("ItemUpdated", (data) => {
+    getItems();
+    console.log("Item updated:", data);
+});
+
+connection.on("ItemDeleted", (itemId) => {
+    getItems();
+    console.log("Item deleted:", itemId);
+});
+
+async function connectToHub() {
+    try {
+        console.log(" Attempting to connect to JewelryHub...");
+        await connection.start();
+        console.log(" Connected to JewelryHub successfully!");
+    } catch (err) {
+        console.error(" Connection failed:", err);
+        setTimeout(connectToHub, 5000);
+    }
+}
+
+connection.onreconnecting((error) => {
+    console.log("Reconnecting:", error);
+});
+
+connection.onreconnected((connectionId) => {
+    console.log("Reconnected with connectionId:", connectionId);
+});
+
 function getRoleFromToken() {
     const token = localStorage.getItem('token');
     if (!token) return null;
@@ -13,13 +70,17 @@ function getRoleFromToken() {
         return null;
     }
 }
+
 function checkUIPermissions() {
     if (getRoleFromToken() === 'Admin') {
-        document.getElementById('add-Email').style.display = 'block';
-        document.getElementById('edit-Email').style.display = 'block';
+        const addEmail = document.getElementById('add-Email');
+        const editEmail = document.getElementById('edit-Email');
+        if(addEmail) addEmail.style.display = 'block';
+        if(editEmail) editEmail.style.display = 'block';
     }
 }
 checkUIPermissions();
+
 function getAuthHeader() {
     const token = localStorage.getItem('token');
     return {
@@ -36,7 +97,7 @@ function getItems() {
         .then(response => {
             if (response.status === 401) {
                 alert("לא מחובר או שהתחברות פגה");
-                window.location.href = 'login.html';
+                window.location.href = 'Login.html';
                 return;
             }
             return response.json();
@@ -63,10 +124,14 @@ function addItem() {
     })
         .then(response => {
             if (response.ok) {
-                getItems();
+                showToast("הפריט נוסף בהצלחה!");
                 document.getElementById('add-Email').value = '';
+                document.getElementById('add-Price').value = '';
+            } else {
+                showToast("שגיאה בהוספת הפריט", true);
             }
-        });
+        })
+        .catch(error => console.error(' Unable to add item.', error));
 }
 
 function deleteItem(id) {
@@ -76,11 +141,11 @@ function deleteItem(id) {
     })
         .then(response => {
             if (response.ok) {
-                getItems();
+                showToast("הפריט נמחק בהצלחה!");
             } else if (response.status === 403) {
-                alert("אין לך הרשאה למחוק פריט זה!");
+                showToast("אין לך הרשאה למחוק פריט זה!", true);
             } else {
-                alert("מחיקה נכשלה");
+                showToast("מחיקה נכשלה", true);
             }
         })
         .catch(error => console.error('Unable to delete item.', error));
@@ -106,13 +171,14 @@ function updateItem() {
     })
         .then(response => {
             if (response.ok) {
-                getItems();
+                showToast("הפריט עודכן בהצלחה!");
                 closeInput();
             } else if (response.status === 403) {
-                alert("אין לך הרשאה לערוך פריט זה");
+                showToast("אין לך הרשאה לערוך פריט זה", true);
             }
         });
 }
+
 function closeInput() {
     document.getElementById('editForm').style.display = 'none';
 }
@@ -121,6 +187,7 @@ function _displayCount(count) {
     const email = count === 1 ? 'item' : 'items';
     document.getElementById('counter').innerText = `${count} ${email}`;
 }
+
 function displayEditForm(id) {
     const item = list.find(i => i.id === id);
     if (!item) return;
@@ -138,7 +205,6 @@ function _displayItems(data) {
 
     data.forEach(item => {
         const tr = tBody.insertRow();
-
         tr.insertCell(0).textContent = item.id;
         tr.insertCell(1).textContent = item.email;
         tr.insertCell(2).textContent = item.color;

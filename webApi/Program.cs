@@ -44,10 +44,28 @@ builder.Services.AddAuthorization(cfg =>
 {
     cfg.AddPolicy("Admin", policy => policy.RequireClaim("type", "Admin"));
 });
+
+// Add CORS for SignalR
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policyBuilder =>
+    {
+        policyBuilder.WithOrigins("http://localhost:3000", "http://localhost:5000", "http://localhost:7059")
+                     .AllowAnyMethod()
+                     .AllowAnyHeader()
+                     .AllowCredentials();
+    });
+});
+
+builder.Services.AddSignalR(options =>
+{
+    options.EnableDetailedErrors = true;
+});
 builder.Services.AddProjectServices();
 
 var app = builder.Build();
 
+app.UseCors();
 app.UseHttpsRedirection();
 
 app.UseDefaultFiles(new DefaultFilesOptions
@@ -61,4 +79,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<webApi.Hubs.JewelryHub>("/jewelryHub");
 app.Run();
