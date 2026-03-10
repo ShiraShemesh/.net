@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using webApi.Services;
 using webApi.Interfaces;
 using Microsoft.OpenApi;
+using webApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,13 +44,7 @@ builder.Services.AddAuthorization(cfg =>
 {
     cfg.AddPolicy("Admin", policy => policy.RequireClaim("type", "Admin"));
 });
-
-builder.Services.AddJewelryService();
-builder.Services.AddUserService();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IActiveUserService, ActiveUserService>();
-
-// 4. הגדרת Swagger (נשאר כפי שהיה אצלך)
+builder.Services.AddProjectServices();
 
 var app = builder.Build();
 

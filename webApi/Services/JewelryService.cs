@@ -70,11 +70,4 @@ private void saveToFile()
         }
     }
 
-    public static class JewelryServiceExtension
-    {
-        public static void AddJewelryService(this IServiceCollection services)
-        {
-            services.AddSingleton<Iinterface<Jewelry>, JewelryService>();
-        }
-    }
 }

@@ -111,13 +111,5 @@ namespace webApi.Services
         }
     }
 
-   public static class UserServiceExtension
-{
-    public static void AddUserService(this IServiceCollection services)
-    {
-        services.AddSingleton<UserService>();
-        services.AddSingleton<IUserService>(sp => sp.GetRequiredService<UserService>());
-        services.AddSingleton<Iinterface<User>>(sp => sp.GetRequiredService<UserService>());
-    }
-}
+  
 }
