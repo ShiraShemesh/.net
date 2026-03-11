@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace webApi.Services
 {
-    public class JewelryService : Iinterface<Jewelry>
+    public class JewelryService : IJewelryService
     {
         private List<Jewelry> list {get;}
 

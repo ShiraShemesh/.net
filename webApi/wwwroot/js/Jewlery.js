@@ -78,7 +78,7 @@ function updateItem() {
         Price: priceValue
     };
 
-    fetch(`${uri}/${itemId}`, {
+    fetch(`$uri}/${itemId}`, {
         method: 'PUT',
         headers: getAuthHeader(),
         body: JSON.stringify(item)
@@ -99,7 +99,7 @@ function closeInput() {
 
 function _displayCount(count) {
     const email = count === 1 ? 'item' : 'items';
-    document.getElementById('counter').innerText = `${count} ${email}`;
+    document.getElementById('counter').innerText = `$count} $email}`;
 }
 
 function displayEditForm(id) {

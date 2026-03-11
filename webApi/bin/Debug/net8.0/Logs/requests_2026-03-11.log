@@ -1,0 +1,18 @@
+[2026-03-11 18:30:40.009] Controller: Jewelry | Action: Delete | User: שירה שמש | Duration: 1ms
+[2026-03-11 18:30:13.372] Controller: Unknown | Action: Unknown | User: שירה שמש | Duration: 26639ms
+[2026-03-11 18:30:40.025] Controller: Jewelry | Action: Get | User: שירה שמש | Duration: 0ms
+[2026-03-11 18:30:40.031] Controller: Jewelry | Action: Get | User: שירה שמש | Duration: 0ms
+[2026-03-11 18:30:40.028] Controller: Unknown | Action: Unknown | User: שירה שמש | Duration: 90012ms
+[2026-03-11 18:32:10.052] Controller: Unknown | Action: Unknown | User: שירה שמש | Duration: 88447ms
+[2026-03-11 18:35:42.672] Controller: Auth | Action: GetGoogleId | User: Anonymous | Duration: 115ms
+[2026-03-11 18:35:47.475] Controller: Auth | Action: GoogleLogin | User: Anonymous | Duration: 565ms
+[2026-03-11 18:35:48.090] Controller: User | Action: Get | User: שירה שמש | Duration: 86ms
+[2026-03-11 18:35:50.324] Controller: User | Action: Delete | User: שירה שמש | Duration: 10ms
+[2026-03-11 18:35:53.633] Controller: User | Action: Delete | User: שירה שמש | Duration: 11ms
+[2026-03-11 18:35:53.649] Controller: User | Action: Get | User: שירה שמש | Duration: 1ms
+[2026-03-11 18:36:06.949] Controller: Jewelry | Action: Get | User: שירה שמש | Duration: 9ms
+[2026-03-11 18:36:06.949] Controller: Unknown | Action: Unknown | User: שירה שמש | Duration: 9ms
+[2026-03-11 18:36:07.002] Controller: Unknown | Action: Unknown | User: שירה שמש | Duration: 12ms
+[2026-03-11 18:36:07.017] Controller: Unknown | Action: Unknown | User: שירה שמש | Duration: 3ms
+[2026-03-11 18:36:07.017] Controller: Unknown | Action: Unknown | User: שירה שמש | Duration: 13ms
+[2026-03-11 18:36:08.023] Controller: User | Action: Get | User: שירה שמש | Duration: 1ms

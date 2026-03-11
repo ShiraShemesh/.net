@@ -75,6 +75,7 @@ app.UseDefaultFiles(new DefaultFilesOptions
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseMiddleware<webApi.Middleware.RequestLoggingMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 
