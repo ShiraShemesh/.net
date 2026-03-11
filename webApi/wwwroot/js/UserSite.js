@@ -24,7 +24,7 @@ function getElements(methodName) {
     return { Name: name, Email: email, Password: password };
 }
 function getEmailFromToken() {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (!token) return null;
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -32,7 +32,7 @@ function getEmailFromToken() {
     return payload.email || payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
 }
 function getRoleFromToken() {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (!token) return null;
     try {
         const base64Url = token.split('.')[1]; 
@@ -47,7 +47,7 @@ function getRoleFromToken() {
 function getItems() {
     fetch(uri, {
         method: 'GET',
-        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` }
     })
         .then(handleResponse)
         .then(data => _displayItems(data))
@@ -63,7 +63,7 @@ function addItem() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
         body: JSON.stringify({ ...newUser, IsAdmin: false })
     })
@@ -81,7 +81,7 @@ function addItem() {
     return false;
 }
 function deleteItem(id) {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (!token) return alert("עליך להיות מחובר כדי למחוק!");
 
     fetch(`${uri}/${id}`, {
@@ -101,7 +101,7 @@ function updateItem() {
     const isAdminField = document.getElementById('edit-IsAdmin');
     const isAdmin = isAdminField ? isAdminField.checked : false;
 
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
 
     const item = {
         id: parseInt(itemId),
@@ -115,7 +115,7 @@ function updateItem() {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
         body: JSON.stringify(item)
     })
@@ -130,7 +130,7 @@ function updateItem() {
         })
         .then(data => {
             if (data && data.token) {
-                localStorage.setItem('token', data.token); 
+                sessionStorage.setItem('token', data.token); 
                 console.log("Token refreshed");
             }
             getItems();

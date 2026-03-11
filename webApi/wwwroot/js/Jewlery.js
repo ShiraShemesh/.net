@@ -1,98 +1,12 @@
-const uri = '/Jewelry';
+﻿const uri = '/Jewelry';
 let list = [];
 
-// פונקציית עזר להצגת הודעת טוסט
-function showToast(message, isError = false) {
-    Toastify({
-        text: message,
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        style: {
-            background: isError ? "#ff5f6d" : "linear-gradient(to right, #00b09b, #96c93d)",
-        }
-    }).showToast();
-}
-
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/jewelryHub", {
-        accessTokenFactory: () => localStorage.getItem('token'),
-        transport: signalR.HttpTransportType.WebSocket | signalR.HttpTransportType.LongPolling
-    })
-    .withAutomaticReconnect([0, 0, 1000, 3000, 5000, 10000])
-    .configureLogging(signalR.LogLevel.Information)
-    .build();
-
-connection.on("ItemAdded", (item) => {
-    getItems();
-    console.log("Item added:", item);
-});
-
-connection.on("ItemUpdated", (data) => {
-    getItems();
-    console.log("Item updated:", data);
-});
-
-connection.on("ItemDeleted", (itemId) => {
-    getItems();
-    console.log("Item deleted:", itemId);
-});
-
-async function connectToHub() {
-    try {
-        console.log(" Attempting to connect to JewelryHub...");
-        await connection.start();
-        console.log(" Connected to JewelryHub successfully!");
-    } catch (err) {
-        console.error(" Connection failed:", err);
-        setTimeout(connectToHub, 5000);
-    }
-}
-
-connection.onreconnecting((error) => {
-    console.log("Reconnecting:", error);
-});
-
-connection.onreconnected((connectionId) => {
-    console.log("Reconnected with connectionId:", connectionId);
-});
-
-function getRoleFromToken() {
-    const token = localStorage.getItem('token');
-    if (!token) return null;
-    try {
-        const base64Url = token.split('.')[1]; 
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const payload = JSON.parse(window.atob(base64));
-        return payload.type;
-    } catch (e) {
-        console.error("שגיאה בפיענוח הטוקן:", e);
-        return null;
-    }
-}
-
-function checkUIPermissions() {
-    if (getRoleFromToken() === 'Admin') {
-        const addEmail = document.getElementById('add-Email');
-        const editEmail = document.getElementById('edit-Email');
-        if(addEmail) addEmail.style.display = 'block';
-        if(editEmail) editEmail.style.display = 'block';
-    }
-}
 checkUIPermissions();
-
-function getAuthHeader() {
-    const token = localStorage.getItem('token');
-    return {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-    };
-}
 
 function getItems() {
     fetch(uri, {
         method: 'GET',
-        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` }
     })
         .then(response => {
             if (response.status === 401) {
@@ -137,7 +51,7 @@ function addItem() {
 function deleteItem(id) {
     fetch(`${uri}/${id}`, {
         method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` }
     })
         .then(response => {
             if (response.ok) {

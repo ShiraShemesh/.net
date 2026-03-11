@@ -17,12 +17,14 @@ namespace webApi.Controllers
         Iinterface<Jewelry> service;
         private readonly IActiveUserService _activeUserService;
         private readonly IHubContext<JewelryHub> _hubContext;
+        private readonly IUserService _userService;
 
-        public JewelryController(Iinterface<Jewelry> service, IActiveUserService activeUserService, IHubContext<JewelryHub> hubContext)
+        public JewelryController(Iinterface<Jewelry> service, IActiveUserService activeUserService, IHubContext<JewelryHub> hubContext, IUserService userService)
         {
             this.service = service;
             _activeUserService = activeUserService;
             _hubContext = hubContext;
+            _userService = userService;
         }
 
         private string GetUserEmail()
@@ -65,17 +67,25 @@ namespace webApi.Controllers
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] Jewelry j)
         {
-            var userId = GetUserId();
-            if (IsAdmin() && !string.IsNullOrEmpty(j.Email))
+            var currentUserEmail = GetUserEmail();
+
+            if (IsAdmin() && !string.IsNullOrEmpty(j.Email) && !j.Email.Equals(currentUserEmail, StringComparison.OrdinalIgnoreCase))
             {
+                // Admin is adding item for another user - validate that user exists
+                var targetUser = _userService.Get().FirstOrDefault(u => u.Email.Equals(j.Email, StringComparison.OrdinalIgnoreCase));
+                if (targetUser == null)
+                    return BadRequest("שגיאה: המשתמש עם כתובת המייל הזו לא קיים במערכת.");
+                
                 service.Create(j);
-                await JewelryHub.NotifyUserAsync(_hubContext, userId, "ItemAdded", j);
+                await JewelryHub.NotifyUserByEmailAsync(_hubContext, j.Email, "ItemAdded", j);
+                await JewelryHub.NotifyAdminsAsync(_hubContext, "ItemAdded", j);
             }
             else
             {
-                j.Email = GetUserEmail();
+                j.Email = currentUserEmail;
                 service.Create(j);
-                await JewelryHub.NotifyUserAsync(_hubContext, userId, "ItemAdded", j);
+                await JewelryHub.NotifyUserByEmailAsync(_hubContext, currentUserEmail, "ItemAdded", j);
+                await JewelryHub.NotifyAdminsAsync(_hubContext, "ItemAdded", j);
             }
             return Ok();
         }
@@ -83,7 +93,6 @@ namespace webApi.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, [FromBody] Jewelry j)
         {
-            var userId = GetUserId();
             var existingItem = service.Get(id);
             if (existingItem == null) return NotFound();
             if (!IsAdmin() && !existingItem.Email.Equals(GetUserEmail(), StringComparison.OrdinalIgnoreCase))
@@ -93,15 +102,27 @@ namespace webApi.Controllers
             {
                 j.Email = existingItem.Email;
             }
+            else
+            {
+                // Admin is trying to update the email - validate that the new user exists
+                if (!j.Email.Equals(existingItem.Email, StringComparison.OrdinalIgnoreCase))
+                {
+                    var targetUser = _userService.Get().FirstOrDefault(u => u.Email.Equals(j.Email, StringComparison.OrdinalIgnoreCase));
+                    if (targetUser == null)
+                        return BadRequest("שגיאה: המשתמש עם כתובת המייל הזו לא קיים במערכת.");
+                }
+            }
+            
             service.Update(id, j);
-            await JewelryHub.NotifyUserAsync(_hubContext, userId, "ItemUpdated", new { id, item = j });
+            await JewelryHub.NotifyUserByEmailAsync(_hubContext, existingItem.Email, "ItemUpdated", new { id, item = j });
+            await JewelryHub.NotifyAdminsAsync(_hubContext, "ItemUpdated", new { id, item = j });
+
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var userId = GetUserId();
             var existingItem = service.Get(id);
             if (existingItem == null) return NotFound();
             if (!IsAdmin() && !existingItem.Email.Equals(GetUserEmail(), StringComparison.OrdinalIgnoreCase))
@@ -109,7 +130,10 @@ namespace webApi.Controllers
 
             bool flag = service.Delete(id);
             if (!flag) return NotFound();
-            await JewelryHub.NotifyUserAsync(_hubContext, userId, "ItemDeleted", id);
+
+            await JewelryHub.NotifyUserByEmailAsync(_hubContext, existingItem.Email, "ItemDeleted", id);
+            await JewelryHub.NotifyAdminsAsync(_hubContext, "ItemDeleted", id);
+
             return NoContent();
         }
     }

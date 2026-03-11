@@ -9,8 +9,8 @@
       ".net/1.0.0": {
         "dependencies": {
           "Google.Apis.Auth": "1.73.0",
-          "Microsoft.AspNetCore.Authentication.Google": "8.0.24",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.24",
+          "Microsoft.AspNetCore.Authentication.Google": "8.0.25",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.25",
           "Microsoft.OpenApi": "3.4.0",
           "Swashbuckle.AspNetCore": "10.1.0"
         },
@@ -53,26 +53,25 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.Google/8.0.24": {
+      "Microsoft.AspNetCore.Authentication.Google/8.0.25": {
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.dll": {
-            "assemblyVersion": "8.0.24.0",
-            "fileVersion": "8.0.2426.7207"
+            "assemblyVersion": "8.0.25.0",
+            "fileVersion": "8.0.2526.11225"
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.24": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.25": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.1.2"
         },
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
-            "assemblyVersion": "8.0.24.0",
-            "fileVersion": "8.0.2426.7207"
+            "assemblyVersion": "8.0.25.0",
+            "fileVersion": "8.0.2526.11225"
           }
         }
       },
-      "Microsoft.Extensions.ApiDescription.Server/8.0.0": {},
       "Microsoft.IdentityModel.Abstractions/7.1.2": {
         "runtime": {
           "lib/net8.0/Microsoft.IdentityModel.Abstractions.dll": {
@@ -139,9 +138,6 @@
         }
       },
       "Microsoft.OpenApi/3.4.0": {
-        "dependencies": {
-          "System.Text.Json": "8.0.5"
-        },
         "runtime": {
           "lib/net8.0/Microsoft.OpenApi.dll": {
             "assemblyVersion": "3.4.0.0",
@@ -159,7 +155,6 @@
       },
       "Swashbuckle.AspNetCore/10.1.0": {
         "dependencies": {
-          "Microsoft.Extensions.ApiDescription.Server": "8.0.0",
           "Swashbuckle.AspNetCore.Swagger": "10.1.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "10.1.0",
           "Swashbuckle.AspNetCore.SwaggerUI": "10.1.0"
@@ -233,8 +228,7 @@
             "fileVersion": "7.0.723.27404"
           }
         }
-      },
-      "System.Text.Json/8.0.5": {}
+      }
     }
   },
   "libraries": {
@@ -264,26 +258,19 @@
       "path": "google.apis.core/1.73.0",
       "hashPath": "google.apis.core.1.73.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Authentication.Google/8.0.24": {
+    "Microsoft.AspNetCore.Authentication.Google/8.0.25": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LVywpHTfNB2XEPfXeV+QeW2iLypQZqj4NnPvKRWEENVUwDJqmlvMBMUfR+rs0aKt/+AUxZxsrD+p0NCyTH1GZA==",
-      "path": "microsoft.aspnetcore.authentication.google/8.0.24",
-      "hashPath": "microsoft.aspnetcore.authentication.google.8.0.24.nupkg.sha512"
+      "sha512": "sha512-3XkuyuuLneQwjLKgrFwg5iixrqcCVqH8Zas+OfR8ftWBh8F76llQlPubiYzePYiR0crMmiRY0f6ZTR1LKNmCBA==",
+      "path": "microsoft.aspnetcore.authentication.google/8.0.25",
+      "hashPath": "microsoft.aspnetcore.authentication.google.8.0.25.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.24": {
+    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.25": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Uwr3m28coB7AIYn4CN/qlTh4FZTGMs51oSyXUyYKYHJTH1xCfnZOeaNe0T3qCKzYc8gvZJPZ9KzKLpJlAZ7mlQ==",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.24",
-      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.8.0.24.nupkg.sha512"
-    },
-    "Microsoft.Extensions.ApiDescription.Server/8.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-jDM3a95WerM8g6IcMiBXq1qRS9dqmEUpgnCk2DeMWpPkYtp1ia+CkXabOnK93JmhVlUmv8l9WMPsCSUm+WqkIA==",
-      "path": "microsoft.extensions.apidescription.server/8.0.0",
-      "hashPath": "microsoft.extensions.apidescription.server.8.0.0.nupkg.sha512"
+      "sha512": "sha512-nb6jCyxh5eP9bsXkHmGcDxUiVIl5wJSombl3LN2L+sjGEVXzcMKbdRe0fp8LQtuBM2hKXcXFxMAYdnohdYJF8Q==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.25",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.8.0.25.nupkg.sha512"
     },
     "Microsoft.IdentityModel.Abstractions/7.1.2": {
       "type": "package",
@@ -389,13 +376,6 @@
       "sha512": "sha512-/qEUN91mP/MUQmJnM5y5BdT7ZoPuVrtxnFlbJ8a3kBJGhe2wCzBfnPFtK2wTtEEcf3DMGR9J00GZZfg6HRI6yA==",
       "path": "system.management/7.0.2",
       "hashPath": "system.management.7.0.2.nupkg.sha512"
-    },
-    "System.Text.Json/8.0.5": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-0f1B50Ss7rqxXiaBJyzUu9bWFOO2/zSlifZ/UNMdiIpDYe4cY4LQQicP4nirK1OS31I43rn062UIJ1Q9bpmHpg==",
-      "path": "system.text.json/8.0.5",
-      "hashPath": "system.text.json.8.0.5.nupkg.sha512"
     }
   }
 }

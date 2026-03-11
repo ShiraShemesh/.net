@@ -52,7 +52,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.Google/8.0.24": {
+      "Microsoft.AspNetCore.Authentication.Google/8.0.25": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.dll": {
@@ -68,7 +68,7 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.24": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.25": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.1.2"
@@ -431,10 +431,10 @@
         "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.Google/8.0.24": {
-      "sha512": "LVywpHTfNB2XEPfXeV+QeW2iLypQZqj4NnPvKRWEENVUwDJqmlvMBMUfR+rs0aKt/+AUxZxsrD+p0NCyTH1GZA==",
+    "Microsoft.AspNetCore.Authentication.Google/8.0.25": {
+      "sha512": "3XkuyuuLneQwjLKgrFwg5iixrqcCVqH8Zas+OfR8ftWBh8F76llQlPubiYzePYiR0crMmiRY0f6ZTR1LKNmCBA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.google/8.0.24",
+      "path": "microsoft.aspnetcore.authentication.google/8.0.25",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -442,14 +442,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.dll",
         "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.xml",
-        "microsoft.aspnetcore.authentication.google.8.0.24.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.8.0.25.nupkg.sha512",
         "microsoft.aspnetcore.authentication.google.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.24": {
-      "sha512": "Uwr3m28coB7AIYn4CN/qlTh4FZTGMs51oSyXUyYKYHJTH1xCfnZOeaNe0T3qCKzYc8gvZJPZ9KzKLpJlAZ7mlQ==",
+    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.25": {
+      "sha512": "nb6jCyxh5eP9bsXkHmGcDxUiVIl5wJSombl3LN2L+sjGEVXzcMKbdRe0fp8LQtuBM2hKXcXFxMAYdnohdYJF8Q==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.24",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.25",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -457,7 +457,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
         "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
-        "microsoft.aspnetcore.authentication.jwtbearer.8.0.24.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.8.0.25.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
@@ -953,11 +953,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Downloads\\net-main\\.net-main\\webApi\\.net.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Downloads\\net-main (6)\\.net-main\\webApi\\.net.csproj",
       "projectName": ".net",
-      "projectPath": "C:\\Users\\user\\Downloads\\net-main\\.net-main\\webApi\\.net.csproj",
+      "projectPath": "C:\\Users\\user\\Downloads\\net-main (6)\\.net-main\\webApi\\.net.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Downloads\\net-main\\.net-main\\webApi\\obj\\",
+      "outputPath": "C:\\Users\\user\\Downloads\\net-main (6)\\.net-main\\webApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -987,7 +987,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -1025,6 +1025,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.24, 8.0.24]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[8.0.24, 8.0.24]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.24, 8.0.24]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.24, 8.0.24]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -1033,7 +1051,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

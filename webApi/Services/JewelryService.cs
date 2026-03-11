@@ -68,6 +68,19 @@ private void saveToFile()
             saveToFile();
             return true;
         }
+
+        public bool DeleteByEmail(string email)
+        {
+            var itemsToDelete = list.Where(j => j.Email.Equals(email, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (itemsToDelete.Count == 0) return false;
+            
+            foreach (var item in itemsToDelete)
+            {
+                list.Remove(item);
+            }
+            saveToFile();
+            return true;
+        }
     }
 
 }

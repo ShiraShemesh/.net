@@ -13,11 +13,13 @@ namespace webApi.Controllers
     {
         private readonly IUserService service;
         private readonly IActiveUserService _activeUserService;
+        private readonly JewelryService _jewelryService;
 
-        public UserController(IUserService service, IActiveUserService activeUserService)
+        public UserController(IUserService service, IActiveUserService activeUserService, JewelryService jewelryService)
         {
             this.service = service;
             _activeUserService = activeUserService;
+            _jewelryService = jewelryService;
         }
 
         private string GetUserEmail() => _activeUserService.Email;
@@ -66,8 +68,15 @@ namespace webApi.Controllers
         [Authorize(Policy = "Admin")]
         public ActionResult Delete(int id)
         {
+            var userToDelete = service.Get(id);
+            if (userToDelete == null) return NotFound();
+            
             var (success, error) = service.ValidateAndDelete(id, GetUserEmail());
             if (!success) return error == "NotFound" ? NotFound() : BadRequest(error);
+            
+            // Delete all jewelry items belonging to this user
+            _jewelryService.DeleteByEmail(userToDelete.Email);
+            
             return NoContent();
         }
     }

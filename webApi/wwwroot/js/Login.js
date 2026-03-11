@@ -56,7 +56,7 @@ function handleCredentialResponse(response) {
         .then(res => res.json())
         .then(data => {
             if (data.token) {
-                localStorage.setItem("token", data.token);
+                sessionStorage.setItem("token", data.token);
                 window.location.href = "User.html";
             } else if (data.error) {
                 alert("שגיאה: " + data.error);
@@ -123,7 +123,7 @@ function checkAndLogin() {
         })
         .then(data => {
             if (data && data.token) {
-                localStorage.setItem('token', data.token);
+                sessionStorage.setItem('token', data.token);
                 window.location.href = 'User.html';
             }
         })
