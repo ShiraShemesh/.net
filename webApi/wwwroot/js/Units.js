@@ -15,7 +15,7 @@ function getRoleFromToken() {
     const token = sessionStorage.getItem('token');
     if (!token) return null;
     try {
-        const base64Url = token.split('.')[1]; 
+        const base64Url = token.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const payload = JSON.parse(window.atob(base64));
         return payload.type;
@@ -29,8 +29,8 @@ function checkUIPermissions() {
     if (getRoleFromToken() === 'Admin') {
         const addEmail = document.getElementById('add-Email');
         const editEmail = document.getElementById('edit-Email');
-        if(addEmail) addEmail.style.display = 'block';
-        if(editEmail) editEmail.style.display = 'block';
+        if (addEmail)addEmail.style.display = 'block';
+        if (editEmail) editEmail.style.display = 'block';
     }
 }
 

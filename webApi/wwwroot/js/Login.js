@@ -57,7 +57,7 @@ function handleCredentialResponse(response) {
         .then(data => {
             if (data.token) {
                 sessionStorage.setItem("token", data.token);
-                window.location.href = "User.html";
+                window.location.href = "Jewlery.html";
             } else if (data.error) {
                 alert("שגיאה: " + data.error);
             }
@@ -124,7 +124,7 @@ function checkAndLogin() {
         .then(data => {
             if (data && data.token) {
                 sessionStorage.setItem('token', data.token);
-                window.location.href = 'User.html';
+                window.location.href = 'Jewlery.html';
             }
         })
         .catch(error => alert(error.message));

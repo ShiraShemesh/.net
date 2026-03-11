@@ -1,6 +1,11 @@
 ﻿const uri = '/Jewelry';
 let list = [];
 
+// בדיקה - אם אין משתמש מחובר, להציג דף התחברות
+if (!sessionStorage.getItem('token')) {
+    window.location.href = 'Login.html';
+}
+
 checkUIPermissions();
 
 function getItems() {
@@ -78,7 +83,7 @@ function updateItem() {
         Price: priceValue
     };
 
-    fetch(`$uri}/${itemId}`, {
+    fetch(`${uri}/${itemId}`, {
         method: 'PUT',
         headers: getAuthHeader(),
         body: JSON.stringify(item)
@@ -142,4 +147,9 @@ function _displayItems(data) {
         tdDelete.appendChild(deleteButton);
     });
     list = data;
+}
+
+function logout() {
+    sessionStorage.removeItem('token');
+    window.location.href = 'Login.html';
 }
